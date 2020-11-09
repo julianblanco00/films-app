@@ -1,0 +1,52 @@
+<div class="row animate__animated animate__fadeIn animate__faster" *ngIf="movie" >
+
+    <div class="col-md-6">
+        <img [src]="movie.poster_path | poster" 
+             [alt]="movie.title"
+             class="img-thumbnail">
+    </div>
+
+    <div class="col-md-6 text-white">
+        {{ movie.title }}
+
+        <div class="row">
+            <div class="col">
+                <star-rating
+                    [value]=movie.vote_average
+                    checkedcolor=yellow
+                    uncheckedcolor=gray
+                    size=15px
+                    readonly=false
+                    totalstars=10>
+                </star-rating>
+            </div>
+
+            <div class="col">
+                 {{ movie.vote_average | number:'1.1-2' }}
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                {{ movie.overview }}
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col">
+                <button (click)="goBack()"
+                        class="btn btn-outline-info">
+                    Go Back
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mt-5 animate__animated animate__fadeIn animate__faster" *ngIf="cast.length">
+    <div class="col">
+        <app-cast-slideshow [cast]="cast"></app-cast-slideshow>
+    </div>
+</div>
